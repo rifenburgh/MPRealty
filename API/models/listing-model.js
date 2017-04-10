@@ -25,4 +25,4 @@ const listingSchema     = new Schema({
 });
 
 const Listing           = mongoose.model('Listing', listingSchema);
-module.exports          = Schedule;
+module.exports          = Listing;

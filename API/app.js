@@ -1,14 +1,20 @@
-const express      = require('express');
-const path         = require('path');
-const favicon      = require('serve-favicon');
-const logger       = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser   = require('body-parser');
-const layouts      = require('express-ejs-layouts');
-const mongoose     = require('mongoose');
+const express           = require('express');
+const path              = require('path');
+const favicon           = require('serve-favicon');
+const logger            = require('morgan');
+const cookieParser      = require('cookie-parser');
+const bodyParser        = require('body-parser');
+const layouts           = require('express-ejs-layouts');
+const mongoose          = require('mongoose');
+const dotenv            = require('dotenv');
+const cors              = require('cors');
+const passport          = require('passport');
+const LocalStrategy     = require('passport-local').Strategy;
+const session           = require('session');
+const bcrypt            = require('bcrypt');
 
-
-mongoose.connect('mongodb://localhost/api');
+dotenv.config();
+mongoose.connect(process.env.MONGODB_URI);
 
 const app = express();
 
