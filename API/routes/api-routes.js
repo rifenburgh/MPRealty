@@ -5,7 +5,7 @@ const bodyParser        = require('body-parser');
 const passport          = require('passport');
 const bcrypt            = require('bcrypt');
 const bcryptSalt        = 10;
-const Featured          = require('../models/listing-model');
+const Listing           = require('../models/listing-model');
 
 //Return all of the Featured Homes
 router.get('/listing', (req, res, next) => {
@@ -30,3 +30,20 @@ router.get('/currentlisting', (req, res, next) => {
     res.json(items);
   });
 });
+
+//Create Test items
+router.post('/listingnew', (req, res, next) => {
+  const newItem         = new Listing({
+    price:              123456,
+    area:               "Downtown",
+    sqft:               799
+  });
+  newItem.save((err) => {
+    if(err) {
+      res.status(400).json({ message: "Something went wrong." });
+    }
+      res.status(200).json(newItem);
+  });
+});
+
+module.exports  = router;

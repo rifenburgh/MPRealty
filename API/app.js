@@ -12,6 +12,7 @@ const passport          = require('passport');
 const LocalStrategy     = require('passport-local').Strategy;
 const session           = require('session');
 const bcrypt            = require('bcrypt');
+const Listing           = require('./models/listing-model');
 
 dotenv.config();
 mongoose.connect(process.env.MONGODB_URI);
@@ -23,7 +24,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'MP Realty';
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -33,11 +34,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(layouts);
+//Disable CORS in Production
+if (process.env.NODE_ENV !== 'production') {
+  app.use(cors({
+    credentials: true,
+    origin: ['http://localhost:4200', 'http://localhost:8000']
+  }));
+}
 
-const index             = require('./routes/index');
-app.use('/', index);
+
+// const index             = require('./routes/index');
+// app.use('/', index);
 const api               = require('./routes/api-routes');
-api.use('/api', api);
+app.use('/api', api);
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
