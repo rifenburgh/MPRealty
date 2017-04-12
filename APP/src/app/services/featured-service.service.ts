@@ -19,7 +19,7 @@ export class FeaturedServiceService {
       .catch((err) => {
         console.log('Error creating a New Listing', err);
     })
-    /*
+    */
   }
 
   featuredList() {

@@ -19,6 +19,7 @@ const listingSchema     = new Schema({
   assessment:           String,
   acreage:              String,
   mls:                  String,
+  sqft:                 Number,
   photos:               Boolean,
   virtual_tour:         Boolean,
   end_listing:          Date

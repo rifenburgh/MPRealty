@@ -1,0 +1,28 @@
+[
+  {
+    "area":                 "Gunning Pointe",
+    "price":                "515000",
+    "street_address":       "123 Main Street",
+    "city":                 "Miami",
+    "state":                "FL",
+    "zip":                  "33111",
+
+    "style":                "Cape with a full front dormer",
+    "age":                  "1955",
+    "age_desc":             "Built with Antique Windows",
+    "bedrooms":             "3",
+    "bathrooms":            "1.5",
+    "water":                "Town water, Private Septic",
+
+    "heat":                 "Hot Water by Oil",
+    "assessment":           "362200",
+    "acreage":              ".43",
+    "mls":                  "21606955",
+    "photos":               "True",
+    "virtualtour":          "False",
+
+    "endlisting":           "6/1/2017",
+    "sqft":                 "1344"
+  }
+
+]
