@@ -64,10 +64,10 @@ router.get('/schedulelist', (req, res, next) => {
 //Model Needed
 router.post('/schedulenew', (req, res, next) => {
 
-  console.log(req.body);
+  console.log("api/schedulenew ", req.body.name);
   const newItem           = new Schedule({
-    name:                 req.formInfo.name,
-    phone:                req.formInfo.phone,
+    name:                 req.body.name,
+    phone:                req.body.phone,
     email:                req.body.email,
     message:              req.body.message,
     besttime:             req.body.besttime,
