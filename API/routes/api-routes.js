@@ -53,7 +53,7 @@ router.get('/schedulelist', (req, res, next) => {
   Schedule.find((err, items) => {
     if(err) {
       res.json(err);
-      return;  
+      return;
     }
     console.log(items);
     res.json(items);
@@ -62,18 +62,24 @@ router.get('/schedulelist', (req, res, next) => {
 
 //Create a new Schedule Request Item
 //Model Needed
-// router.post('/schedulenew', (req, res, next) => {
-//   const newItem           = new Schedule({
-//     customer:             req.body.customer,
-//     area:                 req.body.area
-//   });
-//   newItem.save((err) => {
-//     if(err) {
-//       res.status(400).json({ message: "Something went wrong."});
-//     } else {
-//       res.status(200).json(newItem);
-//     }
-//   });
-// });
+router.post('/schedulenew', (req, res, next) => {
+
+  console.log(req.body);
+  const newItem           = new Schedule({
+    name:                 req.formInfo.name,
+    phone:                req.formInfo.phone,
+    email:                req.body.email,
+    message:              req.body.message,
+    besttime:             req.body.besttime,
+    timeline:             req.body.timeline
+  });
+  newItem.save((err) => {
+    if(err) {
+      res.status(400).json({ message: "Something went wrong."});
+    } else {
+      res.status(200).json(newItem);
+    }
+  });
+});
 
 module.exports  = router;
