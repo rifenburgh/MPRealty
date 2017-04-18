@@ -11,19 +11,21 @@ export class FeaturedServiceService {
   constructor(private myHttp: Http) { }
 
   featuredNew(item) {
-    /*
+
     const options = { withCredentials: true };
-    return this.myHttp.get(`${this.BASE_URL}/api/newlisting`, item, options)
+    return this.myHttp.post(`${this.BASE_URL}/api/newlisting`, item, options)
       .toPromise()
       .then(apiResponse => apiResponse.json())
       .catch((err) => {
         console.log('Error creating a New Listing', err);
     })
-    */
+
   }
 
   featuredList() {
-
+    return this.myHttp.get(`${this.BASE_URL}/api/listing`)
+      .toPromise()
+      .then(apiResponse => apiResponse.json())
   }
 
   featuredEdit() {

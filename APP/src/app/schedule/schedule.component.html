@@ -1,3 +1,44 @@
-<p>
-  schedule works!
-</p>
+<p>When is the best time for one of our professional Realtors to reach out to you?</p>
+
+<table class="table">
+  <tr>
+  </tr>
+</table>
+<div class="row">
+  <div class="col-md-6">
+    <!-- formerly form -->
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" [(ngModel)]="formInfo.name" class="form-control" id="name">
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input [(ngModel)]="formInfo.phone" type="text" class="form-control" id="phone">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input [(ngModel)]="formInfo.email" type="text" class="form-control" id="email">
+      </div>
+  <!-- end form   -->
+</div>
+  <div class="col-md-6">
+    <!-- form  -->
+      <div class="form-group">
+        <label for="message">Message</label>
+        <input [(ngModel)]="formInfo.message" type="text" class="form-control" id="message">
+      </div>
+      <div class="form-group">
+        <label for="besttime">What is the best time to reach out to you?</label>
+        <input [(ngModel)]="formInfo.besttime" type="text" class="form-control" id="besttime">
+      </div>
+      <div class="form-group">
+        <label for="timeline">How soon are you looking to buy/sell your home?</label>
+        <input [(ngModel)]="formInfo.timeline" type="text" class="form-control" id="timeline">
+      </div>
+    <!-- end form -->
+  </div>
+  <div>
+    <button class="btn btn-primary" (click)="scheduleNew(formInfo)">Submit Request</button>
+  </div>
+</div>

@@ -4,22 +4,26 @@ import { Routes, RouterModule } from '@angular/router';
 //APP Components
 import { FeaturedComponent } from './featured/featured.component';
 import { ScheduleComponent } from './schedule/schedule.component';
+import { FeaturedNewComponent } from './featured-new/featured-new.component';
 
-                        
+
 const routes: Routes    = [
   {
     path: '',
     children: []
   },
   {
-  path:                 'featured',
-  component:            FeaturedComponent
-  },
-
-  {
     path:               'schedule',
     component:          ScheduleComponent
   },
+  {
+    path:                 'featured',
+    component:            FeaturedComponent
+  },
+  {
+    path:                 'featurednew',
+    component:            FeaturedNewComponent
+  }
 
 ];
 

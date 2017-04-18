@@ -8,11 +8,16 @@ import { AppComponent } from './app.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { FeaturedComponent } from './featured/featured.component';
 
+import { FeaturedServiceService } from './services/featured-service.service';
+import { ScheduleServiceService } from './services/schedule-service.service';
+import { FeaturedNewComponent } from './featured-new/featured-new.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     ScheduleComponent,
-    FeaturedComponent
+    FeaturedComponent,
+    FeaturedNewComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +25,7 @@ import { FeaturedComponent } from './featured/featured.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [FeaturedServiceService, ScheduleServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
