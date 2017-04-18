@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FeaturedServiceService } from '../services/featured-service.service';
+// import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-featured-new',
@@ -33,6 +34,7 @@ export class FeaturedNewComponent implements OnInit {
   };
   constructor(
     private myFeature: FeaturedServiceService
+    // private _router: Router
   ) { }
 
   ngOnInit() {
@@ -41,5 +43,6 @@ export class FeaturedNewComponent implements OnInit {
   featuredNew(item) {
     this.myFeature.featuredNew(this.formInfo)
       .then((apiResponse) => {});
+    // this._router.navigate(['FeaturedComponent']);
   }
 }

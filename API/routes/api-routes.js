@@ -62,16 +62,31 @@ router.get('/schedulelist', (req, res, next) => {
 
 //Create a new Schedule Request Item
 //Model Needed
-router.post('/schedulenew', (req, res, next) => {
 
-  console.log("api/schedulenew ", req.body.name);
-  const newItem           = new Schedule({
-    name:                 req.body.name,
-    phone:                req.body.phone,
-    email:                req.body.email,
-    message:              req.body.message,
-    besttime:             req.body.besttime,
-    timeline:             req.body.timeline
+//Create a new Featured Listing
+router.post('/newlisting', (req, res, next) => {
+
+  console.log("api/newListing: ", req.body.price);
+  const newItem           = new Listing({
+    area:                 req.body.area,
+    price:                req.body.price,
+    street_addresss:      req.body.street_address,
+    city:                 req.body.city,
+    state:                req.body.state,
+    zip:                  req.body.zip,
+    style:                req.body.style,
+    age:                  req.body.age,
+    age_desc:             req.body.age_desc,
+    bedrooms:             req.body.bedrooms,
+    bathrooms:            req.body.bathrooms,
+    water:                req.body.water,
+    heat:                 req.body.heat,
+    assessment:           req.body.assessment,
+    mls:                  req.body.mls,
+    sqft:                 req.body.sqft,
+    photos:               req.body.photos,
+    virtual_tour:         req.body.virtual_tour,
+    end_listing:          req.body.end_listing
   });
   newItem.save((err) => {
     if(err) {
