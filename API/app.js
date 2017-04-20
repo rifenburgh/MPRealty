@@ -13,6 +13,15 @@ const LocalStrategy     = require('passport-local').Strategy;
 const session           = require('session');
 const bcrypt            = require('bcrypt');
 const Listing           = require('./models/listing-model');
+const s3                = require('s3');
+const multer            = require('multer'),
+      fs                = require('fs'),
+      S3FS              = require('s3fs'),
+      s3fsImp           = new S3FS('mprealty', {
+        accessKeyId:    'AKIAI7YGIIDKSYSMELOQ',
+        secretAccessKey:process.env.S3SECRET
+      });
+
 
 dotenv.config();
 mongoose.connect(process.env.MONGODB_URI);
@@ -42,6 +51,22 @@ if (process.env.NODE_ENV !== 'production') {
   }));
 }
 
+//Setup S3 AWS Storage
+
+var client  = s3.createClient({
+  maxAsyncS3: 20,
+  s3RetryCount: 3,
+  s3RetryDelay: 1000,
+  multipartUploadThreshold: 20971520,
+  multipartUploadSize: 15728640,
+  s3Options: {
+    accesskeyId: "your s3 key",
+    secretAccessKey: "Your S3 Secret"
+  }
+});
+
+
+//END S3 AWS Storage Setup
 
 // const index             = require('./routes/index');
 // app.use('/', index);

@@ -32,22 +32,23 @@ router.get('/currentlisting', (req, res, next) => {
   });
 });
 
-//Create Test items
-//::NOT FINISHED::
-router.post('/listingnew', (req, res, next) => {
-  const newItem         = new Listing({
-    price:              123456,
-    area:               "Downtown",
-    sqft:               799
-  });
-  newItem.save((err) => {
-    if(err) {
-      res.status(400).json({ message: "Something went wrong." });
+//Delete Featured Home
+//            featureddelete
+router.get('/featureddelete/:id', (req, res, next) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(400).json({ message: 'Specified ID is Not valid.' });
+  }
+  Listing.remove({ _id: req.params.id }, (err) => {
+    if (err) {
+      res.json(err);
+      return;
     }
-      res.status(200).json(newItem);
+    res.json({ message: 'This Featured Listing has been removed.' });
   });
 });
 
+//List all of the Existing Schedule Contact Requests
+//Should only be available post-login
 router.get('/schedulelist', (req, res, next) => {
   //NEEDS Schedule Model Defined
   Schedule.find((err, items) => {
@@ -60,13 +61,11 @@ router.get('/schedulelist', (req, res, next) => {
   });
 });
 
-//Create a new Schedule Request Item
-//Model Needed
+
 
 //Create a new Featured Listing
 router.post('/newlisting', (req, res, next) => {
-
-  console.log("api/newListing: ", req.body.price);
+  console.log("api/newlisting: ", req.body.price);
   const newItem           = new Listing({
     area:                 req.body.area,
     price:                req.body.price,
@@ -91,6 +90,25 @@ router.post('/newlisting', (req, res, next) => {
   newItem.save((err) => {
     if(err) {
       res.status(400).json({ message: "Something went wrong."});
+    } else {
+      res.status(200).json(newItem);
+    }
+  });
+});
+
+//Create a new Schedule Request Item
+router.post('/schedulenew', (req, res, next) => {
+  const newItem           = new Schedule({
+    name:                 req.body.name,
+    phone:                req.body.phone,
+    email:                req.body.email,
+    message:              req.body.message,
+    bestime:              req.body.besttime,
+    timeline:             req.body.timeline
+  });
+  newItem.save((err) => {
+    if(err) {
+      res.status(400).json({ message: "Something went wrong." });
     } else {
       res.status(200).json(newItem);
     }
