@@ -16,7 +16,8 @@ export class FeaturedComponent implements OnInit {
 
 
   constructor(
-    private myFeature: FeaturedServiceService
+    private myFeature:  FeaturedServiceService,
+    private myRoute:    ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -34,6 +35,14 @@ export class FeaturedComponent implements OnInit {
         console.log(item);
     });
 
+  }
+  deleteFeature(id) {
+    this.myFeature.featuredDelete(id)
+      .then((apiResponse) => {});
+  }
+  addImage(id, img){
+    this.myFeature.addImage(id, img)
+      .then((apiResponse) => {});
   }
 
 }

@@ -11,13 +11,15 @@ import { FeaturedComponent } from './featured/featured.component';
 import { FeaturedServiceService } from './services/featured-service.service';
 import { ScheduleServiceService } from './services/schedule-service.service';
 import { FeaturedNewComponent } from './featured-new/featured-new.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ScheduleComponent,
     FeaturedComponent,
-    FeaturedNewComponent
+    FeaturedNewComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

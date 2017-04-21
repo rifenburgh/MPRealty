@@ -4,6 +4,13 @@
   <p>{{ item.area }}</p>
   <p>{{ item.price }}</p>
   <p>{{ item._id }}</p>
+  <p>
+    <button class="btn btn-primary" (click)="editFeature(item._id)">Edit Listing</button>
+    <button class="btn btn-danger" (click)="deleteFeature(item._id)">Delete Listing</button>
+    <input type="file" ([ngmodel])="item.image" id="image">
+    <button class="btn btn-danger" (click)="addImage(item._id, image)">Add Images</button>
+  </p>
+
 
 
 </div>
