@@ -1,3 +1,37 @@
-<p>
-  user works!
-</p>
+<h2>Login / Signup Page</h2>
+
+<div class="row">
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="name">Username</label>
+      <input type="text" [(ngModel)]="formInfo.username" class="form-control" id="username">
+
+      <label for="Price">Password</label>
+      <input type="text" [(ngModel)]="formInfo.password" class="form-control" id="password">
+
+      <label for="name">Name</label>
+      <input type="text" [(ngModel)]="formInfo.name" class="form-control" id="name">
+
+      <label for="name">Email</label>
+      <input type="text" [(ngModel)]="formInfo.email" class="form-control" id="email">
+
+      <label for="name">Phone</label>
+      <input type="text" [(ngModel)]="formInfo.phone" class="form-control" id="phone">
+
+
+      <hr>
+
+
+      <button (click)="login(formInfo)" class="btn btn-primary">Login</button>
+      |
+      <button (click)="signup(formInfo)" class="btn btn-primary">Signup</button>
+
+    </div>
+
+  </div>
+  <div class="col-md-4">
+  </div>
+
+</div>
