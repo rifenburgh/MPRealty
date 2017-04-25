@@ -10,9 +10,10 @@ const dotenv            = require('dotenv');
 const cors              = require('cors');
 const passport          = require('passport');
 const LocalStrategy     = require('passport-local').Strategy;
-const session           = require('session');
+const session           = require('express-session');
 const bcrypt            = require('bcrypt');
 const Listing           = require('./models/listing-model');
+const Photo             = require('./models/photo-model');
 const s3                = require('s3');
 const multer            = require('multer'),
       fs                = require('fs'),
@@ -52,21 +53,71 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 //Setup S3 AWS Storage
-
-var client  = s3.createClient({
-  maxAsyncS3: 20,
-  s3RetryCount: 3,
-  s3RetryDelay: 1000,
+                         
+var client              = s3.createClient({
+  maxAsyncS3:           20,
+  s3RetryCount:         3,
+  s3RetryDelay:         1000,
   multipartUploadThreshold: 20971520,
-  multipartUploadSize: 15728640,
+  multipartUploadSize:      15728640,
   s3Options: {
-    accesskeyId: "your s3 key",
-    secretAccessKey: "Your S3 Secret"
+    accesskeyId:        "Your s3 key",
+    secretAccessKey:    "Your S3 Secret"
   }
 });
 
 
 //END S3 AWS Storage Setup
+
+//Passport-Local Strategy START
+
+passport.use(new LocalStrategy((username, password, next) => {
+  User.findOne({ username }, (err, user) => {
+    if (err) {
+      return next(err);
+    }
+
+    if (!user) {
+      return next(null, false, { message: "Incorrect username" });
+    }
+
+    if (!bcrypt.compareSync(password, user.password)) {
+      return next(null, false, { message: "Incorrect password" });
+    }
+
+    return next(null, user);
+  });
+}));
+
+passport.serializeUser((user, cb) => {
+  console.log('Save to session????', user);
+  cb(null, user.id);
+});
+
+passport.deserializeUser((id, cb) => {
+  console.log('Retrieve from Session????', id);
+  User.findOne({ "_id": id }, (err, user) => {
+    if (err) { return cb(err); }
+    cb(null, user);
+  });
+});
+
+app.use(session({
+secret: "passport-local-strategy",
+resave: true,
+saveUninitialized: true,
+cookie : { httpOnly: true, maxAge: 2419200000 }
+}));
+
+//These belong before the Routes are declared
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+//Passport-Local Strategy END
+
+
 
 // const index             = require('./routes/index');
 // app.use('/', index);
