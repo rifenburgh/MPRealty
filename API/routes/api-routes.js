@@ -171,8 +171,32 @@ router.post('/signup', (req, res, next) => {
 
 //LOGIN
 
-router.post("/login", function (req, res, next) {
+router.post('/login', (req, res, next) => {
+  console.log('/login api start ');
   passport.authenticate('local', function(err, user, info) {
+    req.logIn(user, (err) => {
+      if(err) {
+        console.log('/login error', err);
+        return;
+      }
+      console.log('/login REQ.SESSION', req.session);
+      console.log('/login REQ.USER ', req.user);
+      res.send(200);
+    });
+
+  //   if (err) {
+  //
+  //   }
+  //   return res.status(200).json(req.user);
+  // });
+});
+});
+
+  /*
+  passport.authenticate('local', function(err, user, info) {
+    console.log('/login api user', req.body.username);
+
+
     if (err) {
       return next(err);
     }
@@ -190,7 +214,7 @@ router.post("/login", function (req, res, next) {
       res.status(200).json(req.user);
     });
   })(req, res, next);
-});
+  */
 
 
 /* ES6
